@@ -3,16 +3,26 @@ import { ITodoItem } from "../../types/types";
 
 interface TodoState {
     tasks: ITodoItem[];
+    isShowignList: boolean;
 }
 
 const initialState: TodoState = {
-    tasks: []
+    tasks: [],
+    isShowignList: false
 }
 
 const todoSlice = createSlice({
     name: "tasks",
     initialState: initialState,
     reducers: {
+
+        showingList(state):void {
+            state.isShowignList = true;
+        },
+
+        toggleShowingTodoList(state):void {
+            state.isShowignList = !state.isShowignList;
+        },
 
         addTask(state, action: PayloadAction<{message: string, id: string}>): void {
                 const newTask = {
@@ -33,29 +43,16 @@ const todoSlice = createSlice({
             if (current) {
                 current.isCompleted = !current.isCompleted
             }
-        },
-
-        toggleEditMode(state, action: PayloadAction<{id: string}>): void {
-            const current = state.tasks.find(item => item.id === action.payload.id);
-            if (current) {
-                current.editMode = !current.editMode;
-            }
-        },
-        editTask(state, action: PayloadAction<{newMessage: string, id: string}>) {
-            const current = state.tasks.find(item => item.id === action.payload.id)
-            if (current) {
-                current.message = action.payload.newMessage;
-            }
         }
     }
 });
 
 export const { 
     addTask, 
+    showingList,
     removeTask,
     completeTheTask,
-    toggleEditMode,
-    editTask
+    toggleShowingTodoList,
 
 } = todoSlice.actions;
 

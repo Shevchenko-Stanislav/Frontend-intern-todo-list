@@ -1,35 +1,46 @@
+import { useState } from "react";
 import { BsCheckLg } from "react-icons/bs";
-import { completeTheTask } from "../../store/reducers/todoSlice";
+import { completeTheTask, removeTask } from "../../store/reducers/todoSlice";
+import { addTask, showingCompletedList } from "../../store/reducers/todosCompletedSlice";
 import { useAppDispatch } from "../../hooks/redux";
 interface CheckboxProps {
     id: string;
-    isCompleted: boolean
+    isCompleted: boolean,
+    message: string
 }
 
-const Checkbox: React.FC<CheckboxProps> = (props) => {
+const Checkbox: React.FC<CheckboxProps> = ({id, isCompleted, message}) => {
+    const [checkboxStatus, setCheckboxStatus] = useState(isCompleted);
     const dispatch = useAppDispatch();
 
     function completeCurrentTask (): void {
-        const id = props.id;
         dispatch(completeTheTask({id}))
+        setCheckboxStatus(true);
+        
+        setTimeout(() => {
+            dispatch(removeTask({id}));
+            dispatch(addTask({message, id}));
+            dispatch(showingCompletedList());
+        }, 500)
+        
     }
     
     return (
         <button
         className={
-            `my-checbox-border
-            border-2 
+            `border-2 
             rounded-full  
             w-[20px] 
             h-[20px] 
             flex 
             justify-center 
             items-center
-            ${props.isCompleted && "my-checbox-bg"}`   
-        }
+            disabled`   
+        }   
             onClick={completeCurrentTask}
+            disabled={checkboxStatus}
         >
-            {props.isCompleted && <BsCheckLg />}
+            {isCompleted && <BsCheckLg fill="green"/>}
         </button>
     )
 }

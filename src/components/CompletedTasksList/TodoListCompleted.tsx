@@ -1,16 +1,23 @@
-import { TodoItem } from "./TodoItem/TodoItem";
-import { useAppSelector } from "../hooks/redux";
+import { TodoItem } from "../TodoItem/TodoItem";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { removeAllTask } from "../../store/reducers/todosCompletedSlice";
 
-const TodoList: React.FC = () => {
+const TodoListCompleted: React.FC = () => {
 
-    const isShowignTodoList = useAppSelector(state => state.tasks.isShowignList);
-    const tasks = useAppSelector(state => state.tasks.tasks);
-    const TodoList = tasks.map(item => <TodoItem key={item.id} {...item} />);
+    const isShowignTodoList = useAppSelector(state => state.completedTasks.isShowignList);
+    const completedTasks = useAppSelector(state => state.completedTasks.completedTasks);
+    const dispatch = useAppDispatch();
+    const TodoList = completedTasks.map(item => <TodoItem key={item.id} {...item} />);
+
+    function crearAll () {
+        dispatch(removeAllTask());
+    }
+
     return (
        <div className="mb-[65px]">
             {isShowignTodoList &&  
                 <div>
-                    {tasks.length
+                    {completedTasks.length
                         ? TodoList
                         : <div className="
                             text-2xl bg-white border-[1px] 
@@ -21,7 +28,7 @@ const TodoList: React.FC = () => {
                             flex
                             items-center 
                             justify-center">
-                            There are no tasks yet
+                            No completed tasks
                         </div>
                     }
                 </div>
@@ -38,10 +45,10 @@ const TodoList: React.FC = () => {
                 items-center 
                 text-gray-400
                 px-4">
-                {tasks.length} items left
+                <button onClick={crearAll}>Clear completed</button>
             </div>
        </div>
     )
 }
 
-export {TodoList}
+export { TodoListCompleted }

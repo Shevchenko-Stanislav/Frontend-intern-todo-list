@@ -3,10 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './styles/index.scss';
 import { App } from './App';
 import { Provider } from 'react-redux';
-import { store, persistor } from './store/store';
-import { ThemeProvider } from './providers/ThemeProvider';
-import { Layout } from './components/layout/Layout';
-import { PersistGate } from 'redux-persist/integration/react';
+import { store } from './store/store';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -14,13 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <PersistGate persistor={persistor}>
-                <ThemeProvider>
-                    <Layout>
-                        <App />
-                    </Layout>
-                </ThemeProvider>
-            </PersistGate>
+            <App />
         </Provider>
     </React.StrictMode>
 );
