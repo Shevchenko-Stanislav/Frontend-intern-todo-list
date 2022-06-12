@@ -1,6 +1,6 @@
 # Todo List
 
-Это приложение для планирования дел. Результат вы можете посмотреть по [ссылке.](https://shevchenko-stanislav.github.io/todo-list)
+Это тестовое задание на позицию intern. Результат вы можете посмотреть по [ссылке.](https://shevchenko-stanislav.github.io/Frontend-intern-todo-list/)
 
 ## Описание проекта
 
