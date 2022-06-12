@@ -1,47 +1,32 @@
-import { TodoItem } from "./TodoItem/TodoItem";
-import { useAppSelector } from "../hooks/redux";
+import { useAppSelector, useAppDispatch } from '../hooks/redux';
+import { toggleShowingTodoList } from '../store/reducers/todoSlice';
+
+import { TaskInput } from './DropdownMenu/TaskInput/TaskInput';
+import { FooterTodoList } from './FootersTodoList/FooterTodoList';
+import { DropdownMenu } from './DropdownMenu/DropdownMenu';
+import { TodoItemList } from './TodoItemList/TodoItemList';
 
 const TodoList: React.FC = () => {
-
     const isShowignTodoList = useAppSelector(state => state.tasks.isShowignList);
     const tasks = useAppSelector(state => state.tasks.tasks);
-    const TodoList = tasks.map(item => <TodoItem key={item.id} {...item} />);
+    const dispatch = useAppDispatch();
+
+    function toggleTodoList () {
+        dispatch(toggleShowingTodoList());
+    }
     return (
-       <div className="mb-[65px]">
-            {isShowignTodoList &&  
-                <div>
-                    {tasks.length
-                        ? TodoList
-                        : <div className="
-                            text-2xl bg-white border-[1px] 
-                            border-solid border-gray-200 
-                            text-gray-400
-                            italic
-                            h-[70px]
-                            flex
-                            items-center 
-                            justify-center">
-                            There are no tasks yet
-                        </div>
-                    }
-                </div>
-            }
-            {/* Как должны работать остальные кнопки? */}
-            <div className="bg-white
-                border-[1px] 
-                border-solid 
-                border-gray-200 
-                h-[36px] 
-                text-sm 
-                flex 
-                justify-between 
-                items-center 
-                text-gray-400
-                px-4">
-                {tasks.length} items left
+        <>
+            <DropdownMenu
+                children={TaskInput}
+                isShowignList={isShowignTodoList}
+                toggleList={toggleTodoList}
+            />
+            <div className="max-w-4xl mt-[1px]">
+                <TodoItemList isShowignList={isShowignTodoList} todoList={tasks} />
+                <FooterTodoList listLength={tasks.length} />
             </div>
-       </div>
+        </>
     )
 }
 
-export {TodoList}
+export { TodoList }

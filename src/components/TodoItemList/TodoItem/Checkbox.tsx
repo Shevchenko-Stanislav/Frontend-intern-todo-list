@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { BsCheckLg } from "react-icons/bs";
-import { completeTheTask, removeTask } from "../../store/reducers/todoSlice";
-import { addTask, showingCompletedList } from "../../store/reducers/todosCompletedSlice";
-import { useAppDispatch } from "../../hooks/redux";
+import { completeTheTask, removeTask } from "../../../store/reducers/todoSlice";
+import { addTask, showingCompletedList } from "../../../store/reducers/todosCompletedSlice";
+import { useAppDispatch } from "../../../hooks/redux";
+
 interface CheckboxProps {
     id: string;
     isCompleted: boolean,

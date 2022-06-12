@@ -1,4 +1,4 @@
-import { ITodoItem } from "../../types/types";
+import { ITodoItem } from "../../../types/types";
 import { Checkbox } from "./Checkbox";
 
 

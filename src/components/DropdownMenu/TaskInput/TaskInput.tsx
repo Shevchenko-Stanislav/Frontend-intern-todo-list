@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { removeAllExtraSpaces } from "../../helpers/removeAllExtraSpaces";
-import { useAppDispatch } from "../../hooks/redux";
-import { addTask, showingList } from "../../store/reducers/todoSlice";
-import { generateId } from "../../helpers/idGenerator";
+import { removeAllExtraSpaces } from "../../../helpers/removeAllExtraSpaces";
+import { useAppDispatch } from "../../../hooks/redux";
+import { addTask, showingList } from "../../../store/reducers/todoSlice";
+import { generateId } from "../../../helpers/idGenerator";
 
 
 const TaskInput: React.FC = () => {
