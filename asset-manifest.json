@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Frontend-intern-todo-list/static/css/main.5312be6a.css",
+    "main.js": "/Frontend-intern-todo-list/static/js/main.cafdea3f.js",
+    "index.html": "/Frontend-intern-todo-list/index.html",
+    "main.5312be6a.css.map": "/Frontend-intern-todo-list/static/css/main.5312be6a.css.map",
+    "main.cafdea3f.js.map": "/Frontend-intern-todo-list/static/js/main.cafdea3f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5312be6a.css",
+    "static/js/main.cafdea3f.js"
+  ]
+}
